@@ -13,33 +13,72 @@ const App = () => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", padding: 20 }}>
-      <Text style={{ fontSize: 24 }}>Olá, {nome || "Usuário"}!</Text>
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Olá, {nome || "Usuário"}!</Text>
       <Image
-        source={{ uri: "https://www.shutterstock.com/image-vector/bemvindo-welcome-brazilian-portuguese-hand-600nw-2006151056.jpg" }}
+        source={{
+          uri: "https://cdn.awsli.com.br/600x450/2618/2618163/produto/253864569/flork---bem-vindo-preto-88w0whifo1.png",
+        }}
         style={styles.image}
       />
       <TextInput
         placeholder="Digite seu nome"
         value={nome}
         onChangeText={setNome}
-        style={{ borderWidth: 1, marginVertical: 10, padding: 5 }}
+        style={styles.input}
       />
-      <Button
-        title="Saudar"
-        onPress={() => nome && setMensagem(`${saudacao()}, ${nome}!`)}
-      />
-      <Button title="Limpar" onPress={() => { setNome(""); setMensagem(""); }} />
-      {mensagem ? <Text style={{ marginTop: 20 }}>{mensagem}</Text> : null}
+      <View style={styles.botoes}>
+        <Button
+          title="Saudar"
+          onPress={() => nome && setMensagem(`${saudacao()}, ${nome}!`)}
+        />
+        <Button
+          title="Limpar"
+          onPress={() => {
+            setNome("");
+            setMensagem("");
+          }}
+        />
+      </View>
+      {mensagem ? <Text style={styles.mensagem}>{mensagem}</Text> : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+  },
+  titulo: {
+    fontSize: 24,
+    marginBottom: 10,
+    textAlign: "center",
+  },
   image: {
     width: 200,
     height: 200,
     marginVertical: 10,
+    alignSelf: "center",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 5,
+  },
+  botoes: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 10,
+  },
+  mensagem: {
+    marginTop: 20,
+    fontSize: 18,
+    textAlign: "center",
+    color: "#333",
   },
 });
 
